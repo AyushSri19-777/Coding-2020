@@ -1,0 +1,17 @@
+Postfix to fully paranthesised:
+abc*d/+e-
+((a+(b*c)/d))-e)
+Algo:
+Scan the postfix expression left to right
+
+If opeartor is scanned
+   to operand2 array,pop from stack and copy it
+   to operand1 array,pop from stack and copy it
+   to result, copy opening paranthesis
+   to result, concatenate operand1
+   to result, concatenate scanned operator in form of string
+   to result, concatenate operand2
+   to result, concatenate closing paranthesis
+push result
+else operand encountered push it into stack in form of string
+

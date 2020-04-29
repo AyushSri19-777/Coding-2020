@@ -1,0 +1,65 @@
+#include <iostream.h>
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+class student
+{
+  int roll;
+  char grade;
+  char name[30];
+  public:
+   void read();
+   void sort(student *);
+   void display();
+};
+void student ::read()
+{
+   cout<<"Enter the name: ";
+   gets(name);
+   cout<<"Enter the roll no.: ";
+   cin>>roll;
+   cout<<"Enter the grade: ";
+   cin>>grade;
+}
+void student:: display()
+{
+   cout<<"Name : ";
+   puts(name);
+   cout<<"Roll No.: "<<roll;
+   cout<<"Grad: "<<grade;
+}
+void student:: sort(student ob[])
+{
+    int i,j;
+    student temp;
+    for(i=0;i<=10;i++)
+    {
+       for(j=0;j<=9;j++)
+       {
+	  if(ob[j].roll>ob[j+1].roll)
+	  {
+	       temp=ob[j];
+	       ob[j]=ob[j+1];
+	       ob[j+1]=temp;
+	  }
+       }
+     }
+}
+int main()
+{
+  student s[10],s1;
+  int n,i;
+  cout<<"Enter the number of students";
+  cin>>n;
+  for(i=0;i<n;i++)
+  s[i].read();
+  cout<<"The details:\n ";
+  for(i=0;i<n;i++)
+l  s[i].display();
+  s1.sort(s);
+  cout<<"\nThe sorted details:\n";
+  for(i=0;i<n;i++)
+  s[i].display();
+  getch();
+  return 0;
+  }

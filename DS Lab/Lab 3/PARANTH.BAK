@@ -1,0 +1,45 @@
+#include <iostream.h>
+#include <stdio.h>
+#include <conio.h>
+#define max 30
+class para
+{
+  int top;
+  char s[max];
+  public :
+    void push(char);
+    char pop();
+    para()
+    {
+      top=-1;
+    }
+};
+void para::push(char ele)
+{
+  if(top==max-1)
+  cout<<"Overlow!";
+  else
+  s[++top]=ele;
+}
+char para::pop()
+{
+   if(top==-1)
+   return '#';
+   else
+   return s[top--];
+}
+int main()
+{
+   para ob;
+   char exp[max];
+   cout<<"Enter the expression";
+   gets(exp);
+   for(i=0;exp[i]!='\0';i++)
+   {
+     char k=exp[i];
+     if(k=='{'||k=='['||k'(')
+     ob.push(k);
+   }
+   int g=top;
+   for(i=0;i<g;i++)
+   {

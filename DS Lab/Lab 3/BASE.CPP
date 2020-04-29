@@ -1,0 +1,99 @@
+#include <iostream>
+#include <stdio.h>
+#include <conio.h>
+#define max 30
+using namespace std;
+class base
+{
+  int s[max],top;
+  public:
+   void push(int);
+   int pop();
+};
+void base::push(int ele)
+{
+  if(top==max-1)
+  cout<<"Overflow";
+  else
+  s[++top]=ele;
+}
+int base:: pop()
+{
+   if(top==-1)
+   return -999;
+   else
+   return s[top--];
+}
+int main()
+{
+  base b;
+  int i,n,ch,c=0,k;
+  cout<<"Enter a number";
+  cin>>n;
+  cout<<"Press to convert to\n1.BINARY\n2.OCTAL\n3.HEXADECIMAL";
+  cin>>ch;
+  switch(ch)
+  {
+     case 1:while(n!=0)
+	    {
+	      b.push(n%2);
+	      n/=2;
+	      c++;
+	    }
+	    for(i=1;i<=c;i++)
+	    {
+	       k=b.pop();
+	       if(k!=-999)
+	       cout<<k;
+	    }
+	    break;
+
+     case 2:while(n!=0)
+	    {
+	      b.push(n%8);
+	      c++;
+	      n/=8;
+	    }
+	    for(i=1;i<=c;i++)
+	    {
+	      k=b.pop();
+	      if(k!=-999)
+	      cout<<k;
+	    }
+	    break;
+     case 3:while(n!=0)
+	    {
+	      b.push(n%16);
+	      c++;
+	      n/=16;
+	    }
+	    for(i=1;i<=c;i++)
+	    {
+	      k=b.pop();
+	      if(k<=9)
+	      cout<<k;
+	      else
+	      {
+		switch(k)
+		{
+		  case 10:cout<<"A";
+			  break;
+		  case 11:cout<<"B";
+			  break;
+		  case 12:cout<<"C";
+			  break;
+		  case 13:cout<<"D";
+			  break;
+		  case 14:cout<<"E";
+			  break;
+		  case 15:cout<<"F";
+			  break;
+		}
+	      }
+	    }
+     }
+     return 0;
+}
+
+
+

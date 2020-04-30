@@ -9,6 +9,7 @@ class Tree
         Tree *create();
         void display(Tree *);
         int countLeaf(Tree *);
+        int parent(int,Tree *,Tree *);
 };
 Tree *Tree::create()
 {
@@ -27,6 +28,19 @@ Tree *Tree::create()
         temp->right=create();
         return temp;
     }
+}
+int Tree::parent(int x,Tree *prev,Tree *root)
+{
+    if(root==NULL)
+        return 0;
+    if(root->data==x)
+    {
+        return prev->data;
+    }
+    // if(parent(x,root,root->left)+parent(x,root,root->right)<=0)
+    //     return -1;
+    // else 
+    return parent(x,root,root->left)+parent(x,root,root->right);
 }
 void Tree::display(Tree *root)
 {
@@ -54,4 +68,14 @@ int main()
     root=t.create();
     t.display(root);
     cout<<t.countLeaf(root);
+    int x;
+    cout<<"Enter element jiska parent chahiye";
+    cin>>x;
+    if(t.parent(x,NULL,root)==0)
+        cout<<"\nNo parent found";
+    else
+    {
+        cout<<"\nThe parent is "<<t.parent(x,NULL,root);
+    }
+    
 }

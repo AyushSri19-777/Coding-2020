@@ -36,8 +36,8 @@ using namespace std;
 vector <int> v;
 void getSiblings(Node *node)
 {
-    if(node==NULL)
-    return;
+   if(node==NULL)
+     return;
    if(node->right==NULL&&node->left!=NULL)
     v.push_back((node->left)->data);
    if(node->right!=NULL&&node->left==NULL)

@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 class Tree
 {
@@ -11,7 +12,63 @@ class Tree
         int countLeaf(Tree *);
         int parent(int,Tree *,Tree *);
         void printSibling(Tree *);
+        void preorder(Tree *);
+        void inorder(Tree *);
+        void postorder(Tree *);
+        void leftView(Tree *);
+        void getSum(Tree *);
+        bool isSumTree(Tree *);
 };
+vector <int> v;
+void Tree::getSum(Tree *root)
+{
+    if(root==NULL)
+        return;
+    v.push_back(root->data);
+    getSum(root->left);
+    getSum(root->right);
+}
+bool Tree::isSumTree(Tree* root)
+{
+    int sum=0;
+    getSum(root);
+    for(int i=0;i<v.size();i++)
+        sum=sum+v.at(i);
+    if((sum-(root->data))==(root->data))
+    {
+         v.clear();
+        return true;
+    }
+    else {
+         v.clear();
+        return false;
+    }
+   
+}
+void Tree::preorder(Tree *root)
+{
+    if(root==NULL)
+        return;
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+void Tree::inorder(Tree *root)
+{
+    if(root==NULL)
+        return;
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+void Tree::postorder(Tree *root)
+{
+    if(root==NULL)
+        return;
+    postorder(root->left);
+    postorder(root->right);
+    cout<<root->data<<" ";
+}
 void Tree::printSibling(Tree* node)
 {
    if(node==NULL)
@@ -41,6 +98,16 @@ Tree *Tree::create()
         return temp;
     }
 }
+void Tree::leftView(Tree *root)
+{
+    if(root==NULL)
+    return;
+    cout<<root->data<<" ";
+    if(root->left==NULL&&root->right!=NULL)
+        leftView(root->right);
+    leftView(root->left);
+}
+
 int Tree::parent(int x,Tree *prev,Tree *root)
 {
     if(root==NULL)
@@ -88,4 +155,20 @@ int main()
     }    
     cout<<"\nSibling ho jae ";
     t.printSibling(root);
+    cout<<"\nPreorder ";
+    t.preorder(root);
+    cout<<"\nInorder ";
+    t.inorder(root);
+    cout<<"\nPostorder ";
+    t.postorder(root);
+    cout<<"\nLeft View of Binary Tree ";
+    t.leftView(root);
+    cout<<"\n"<<t.isSumTree(root)<<"\n";
+    if(t.isSumTree(root)==0)
+        cout<<"\nThe tree is not sum tree";
+    else
+    {
+        cout<<"\nThe tree is sum tree";
+    }
+    
 }

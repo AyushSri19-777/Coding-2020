@@ -49,14 +49,29 @@ Testcase2: The tree is
 So, DLL would be 40<=>20<=>60<=>10<=>30.
 Link- https://practice.geeksforgeeks.org/problems/binary-tree-to-dll/1
 */
-void bToDLL(Node *root, Node **head_ref)
-{
-    if(root==NULL)
-        return;
-    bToDLL(root->right,head_ref);
-    root->right=*head_ref;
-    if(*head_ref)(*head_ref)->left=root;
-        *head_ref=root;
-    bToDLL(root->left,head_ref);
-    
+void BinaryTree2DoubleLinkedList(node *root, node **head) 
+{ 
+    // Base case 
+    if (root == NULL) return; 
+  
+    // Initialize previously visited node as NULL. This is 
+    // static so that the same value is accessible in all recursive 
+    // calls 
+    static node* prev = NULL; 
+  
+    // Recursively convert left subtree 
+    BinaryTree2DoubleLinkedList(root->left, head); 
+  
+    // Now convert this node 
+    if (prev == NULL) 
+        *head = root; 
+    else
+    { 
+        root->left = prev; 
+        prev->right = root; 
+    } 
+    prev = root; 
+  
+    // Finally convert right subtree 
+    BinaryTree2DoubleLinkedList(root->right, head); 
 }

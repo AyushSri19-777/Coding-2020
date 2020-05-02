@@ -16,6 +16,8 @@ class Tree
         void printSibling(Tree *);
         void preorder(Tree *);
         void inorder(Tree *);
+        int height(Tree *);
+        void printGivenLevel(Tree *,int);
         void postorder(Tree *);
         void leftView(Tree *);
         void getL(Tree *);
@@ -23,6 +25,7 @@ class Tree
         void topView(Tree *);
         void getSum(Tree *);
         bool isSumTree(Tree *);
+        void levelorder(Tree *);
         void ancestors(Tree *,int);
 };
 vector <int> v,p;
@@ -74,6 +77,29 @@ void Tree::postorder(Tree *root)
     postorder(root->left);
     postorder(root->right);
     cout<<root->data<<" ";
+}
+int Tree::height(Tree *root)
+{
+    if(root==NULL)
+        return 0;
+    return 1+max(height(root->left),height(root->right));
+}
+void Tree::printGivenLevel(Tree *root,int l)
+{
+    if(root==NULL)
+        return;
+    if(l==1)
+        cout<<root->data<<" ";
+    else if(l>1)
+    {
+        printGivenLevel(root->left,l-1);
+        printGivenLevel(root->right,l-1);
+    }
+}
+void Tree::levelorder(Tree *root)
+{
+    for(int i=1;i<=height(root);i++)
+        printGivenLevel(root,i);
 }
 void Tree::ancestors(Tree *root,int j)
 {
@@ -212,6 +238,8 @@ int main()
     t.inorder(root);
     cout<<"\nPostorder ";
     t.postorder(root);
+    cout<<"\nLevel Order ";
+    t.levelorder(root);
     cout<<"\nLeft View of Binary Tree ";
     t.leftView(root);
     if(t.isSumTree(root)==0)

@@ -1,6 +1,7 @@
 #include<iostream>
 #include<stdio.h>
 #include<vector>
+#include<bits/stdc++.h>
 using namespace std;
 class Tree
 {
@@ -17,11 +18,14 @@ class Tree
         void inorder(Tree *);
         void postorder(Tree *);
         void leftView(Tree *);
+        void getL(Tree *);
+        void getR(Tree *);
+        void topView(Tree *);
         void getSum(Tree *);
         bool isSumTree(Tree *);
         void ancestors(Tree *,int);
 };
-vector <int> v;
+vector <int> v,p;
 void Tree::getSum(Tree *root)
 {
     if(root==NULL)
@@ -119,7 +123,7 @@ Tree *Tree::create()
         return temp;
     }
 }
-void Tree::leftView(Tree *root)
+void Tree:: leftView(Tree *root)
 {
     if(root==NULL)
     return;
@@ -128,7 +132,33 @@ void Tree::leftView(Tree *root)
         leftView(root->right);
     leftView(root->left);
 }
-
+void Tree::getL(Tree *root)
+{
+    if(root==NULL)
+        return;
+    topView(root->left);
+    v.push_back(root->data);
+}
+void Tree::getR(Tree *root)
+{
+    if(root==NULL)
+        return;
+    topView(root->right);
+    v.push_back(root->data);
+}
+void Tree::topView(Tree *root)
+{
+    getL(root);
+    getR(root);
+    for(int i=0;i<v.size();i++)
+        cout<<v.at(i)<<" ";
+    reverse(p.begin(),p.end());
+    for(int i=1;i<p.size();i++)
+        cout<<p.at(i)<<" ";
+    v.clear();
+    p.clear();
+    
+}
 int Tree::parent(int x,Tree *prev,Tree *root)
 {
     if(root==NULL)
@@ -192,4 +222,6 @@ int main()
     }
     cout<<"\nPrinting ancestor ";
     t.ancestors(root,1);    
+    cout<<"Top view is: ";
+    t.topView(root);
 }

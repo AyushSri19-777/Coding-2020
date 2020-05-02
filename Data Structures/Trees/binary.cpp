@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdio.h>
 #include<vector>
 using namespace std;
 class Tree
@@ -18,6 +19,7 @@ class Tree
         void leftView(Tree *);
         void getSum(Tree *);
         bool isSumTree(Tree *);
+        void ancestors(Tree *,int);
 };
 vector <int> v;
 void Tree::getSum(Tree *root)
@@ -68,6 +70,25 @@ void Tree::postorder(Tree *root)
     postorder(root->left);
     postorder(root->right);
     cout<<root->data<<" ";
+}
+void Tree::ancestors(Tree *root,int j)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(root->data==j)
+    {
+        for(int i=0;i<v.size();i++)
+            cout<<v[i]<<" ";
+    }
+    else
+    {
+        v.push_back(root->data);
+        ancestors(root->left,j);
+        ancestors(root->right,j);
+        v.pop_back();
+    }    
 }
 void Tree::printSibling(Tree* node)
 {
@@ -163,12 +184,12 @@ int main()
     t.postorder(root);
     cout<<"\nLeft View of Binary Tree ";
     t.leftView(root);
-    cout<<"\n"<<t.isSumTree(root)<<"\n";
     if(t.isSumTree(root)==0)
         cout<<"\nThe tree is not sum tree";
     else
     {
         cout<<"\nThe tree is sum tree";
     }
-    
+    cout<<"\nPrinting ancestor ";
+    t.ancestors(root,1);    
 }

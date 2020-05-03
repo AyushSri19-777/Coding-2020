@@ -10,7 +10,7 @@ class Tree
     Tree *right;
     public:
         Tree *create();
-        void display(Tree *);
+        void display(Tree *,int);
         int countLeaf(Tree *);
         int parent(int,Tree *,Tree *);
         void printSibling(Tree *);
@@ -195,13 +195,15 @@ int Tree::parent(int x,Tree *prev,Tree *root)
     }
     return parent(x,root,root->left)+parent(x,root,root->right);
 }
-void Tree::display(Tree *root)
+void Tree::display(Tree *root,int level)
 {
     if(root==NULL)
         return;
-    display(root->left);
-    cout<<root->data<<"yo";
-    display(root->right);
+    display(root->right,level+1);
+    for(int i=0;i<level;i++)
+        cout<<"   ";
+    cout<<root->data<<endl;
+    display(root->left,level+1);
 }
 int Tree::countLeaf(Tree *root)
 {
@@ -219,7 +221,8 @@ int main()
     Tree t;
     Tree *root=NULL;
     root=t.create();
-    t.display(root);
+    cout<<"\nThe Tree\n";
+    t.display(root,1);
     cout<<t.countLeaf(root);
     int x,y;
     cout<<"\nEnter element jiska parent chahiye ";

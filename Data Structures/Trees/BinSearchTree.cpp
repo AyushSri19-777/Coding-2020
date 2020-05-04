@@ -2,12 +2,14 @@
 using namespace std;
 class Tree
 {
+    public:
     int data;
     Tree *left;
     Tree *right;
     public:
         Tree *create(Tree*,int);
         void display(Tree *,int);
+        Tree *search(Tree*,int);
 };
 Tree *Tree::create(Tree *root,int x)
 {    
@@ -27,6 +29,15 @@ Tree *Tree::create(Tree *root,int x)
         root->right=create(root->right,x);
     }
     return root;
+}
+Tree *Tree::search(Tree *root,int x)
+{
+    if(root->data==x)
+        return root;
+    if(x<root->data)
+        return search(root->left,x);
+    if(x>root->data)
+        return search(root->right,x);
 }
 void Tree::display(Tree *root,int level)
 {
@@ -50,4 +61,6 @@ int main()
         root=t.create(root,x);
     }
     t.display(root,1);    
+    Tree *cur=t.search(root,18);
+    cout<<(cur)->data<<"aajfbsja";
 }

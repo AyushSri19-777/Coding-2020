@@ -1,7 +1,8 @@
 #include<iostream>
 #include<stdio.h>
 #include<vector>
-#include<bits/stdc++.h>
+#include <stack>
+#include<algorithm>
 using namespace std;
 class Tree
 {
@@ -21,6 +22,9 @@ class Tree
         void postorder(Tree *);
         void leftView(Tree *);
         void getL(Tree *);
+        void inorderIter(Tree *);
+        void preorderIter(Tree *);
+        void postorderIter(Tree *);
         void getR(Tree *);
         void topView(Tree *);
         void getSum(Tree *);
@@ -185,6 +189,70 @@ void Tree::topView(Tree *root)
     p.clear();
     
 }
+void Tree::inorderIter(Tree *root)
+{
+    stack <Tree *> s;
+    while(1)
+    {
+        while(root!=NULL)
+        {
+            s.push(root);
+            root=root->left;
+        }
+        if(s.empty())
+            return;
+        root=s.top();
+        s.pop();
+        cout<<root->data<<" ";
+        root=root->right;
+    }
+}
+void Tree::preorderIter(Tree *root)
+{
+    stack <Tree *> s;
+    for(;;)
+    {
+        while(root!=NULL)
+        {
+            cout<<root->data<<" ";
+            s.push(root);
+            root=root->left;
+        }
+        if(s.empty())
+            return;
+        root=s.top();
+        s.pop();
+        root=root->right;
+    }
+}
+void Tree::postorderIter(Tree *root)
+{
+    stack <Tree *> s;
+    do
+    {
+        while(root!=NULL)
+        {
+            if(root->right!=NULL)
+                s.push(root->right);
+            s.push(root);
+            root=root->left;
+        }
+        root=s.top();
+        s.pop();
+        if(root->right!=NULL&&s.top()==root->right)
+        {
+            s.pop();
+            s.push(root);
+            root=root->right;
+        }
+        else
+        {
+            cout<<root->data<<" ";
+            root=NULL;
+        }
+        
+    }while(!s.empty());
+}
 int Tree::parent(int x,Tree *prev,Tree *root)
 {
     if(root==NULL)
@@ -255,4 +323,10 @@ int main()
     t.ancestors(root,1);    
     cout<<"Top view is: ";
     t.topView(root);
+    cout<<"\nIterative inorder ";
+    t.inorderIter(root);
+    cout<<"\nIterative preorder ";
+    t.preorderIter(root);
+    cout<<"\nIterative postorder ";
+    t.postorderIter(root);
 }

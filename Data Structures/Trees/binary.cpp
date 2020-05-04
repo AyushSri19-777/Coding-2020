@@ -192,6 +192,7 @@ void Tree::topView(Tree *root)
 void Tree::inorderIter(Tree *root)
 {
     stack <Tree *> s;
+    
     while(1)
     {
         while(root!=NULL)

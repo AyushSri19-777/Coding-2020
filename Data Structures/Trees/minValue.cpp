@@ -1,0 +1,58 @@
+/*Given a Binary Search Tree. The task is to find the minimum element in this given BST. If the tree is empty, there is no minimum elemnt, so print -1 in that case.
+
+Input:
+First line of input contains the number of test cases T. For each test case, there will be only a single line of input which is a string representing the tree as described below: 
+
+The values in the string are in the order of level order traversal of the tree where, numbers denotes node values, and a character “N” denotes NULL child.
+
+For example:
+
+For the above tree, the string will be: 1 2 3 N N 4 6 N 5 N N 7 N
+
+Output:
+For each testcase in new line, print the minimum element in BST.
+
+User Task:
+The task is to complete the function minValue() which takes root as the argument and returns the minimum element of BST.
+
+Constraints:
+1 <= T <= 100
+1 <= N <= 104
+
+Example:
+Input:
+2
+5 4 6 3 N N 7 1
+9 N 10 N 11
+Output:
+1
+9
+
+Explanation:
+Testcase 1: We construct the following BST by inserting given values one by one in an empty BST.
+            5
+          /     \
+       4         6
+     /              \
+   3                7
+   /
+ 1
+
+The minimum value in the given BST is 1.
+Testcase 2: We construct the following BST by inserting given values one by one in an empty BST.
+             9
+                \
+                10
+                    \
+                    11
+The minimum value in the given BST is 9.
+Link- https://practice.geeksforgeeks.org/problems/minimum-element-in-bst/1/
+*/
+int minValue(Node* root)
+{
+    if(root==NULL)
+        return -1;
+    if(root->left==NULL)
+        return root->data;
+    minValue(root->left);
+}

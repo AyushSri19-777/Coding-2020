@@ -326,8 +326,8 @@ int main()
     t.topView(root);
     cout<<"\nIterative inorder ";
     t.inorderIter(root);
-    cout<<"\nIterative preorder ";
+    cout<<"\nIterative Preorder ";
     t.preorderIter(root);
-    cout<<"\nIterative postorder ";
+    cout<<"\nIterative Postorder ";
     t.postorderIter(root);
 }

@@ -10,5 +10,5 @@ int main()
     fib[1]=1;
     for(int i=2;i<n;i++)
         fib[i]=fib[i-1]+fib[i-2];
-    cout<<"nth Fibonacci number is= "<<fib[n-1];
+    cout<<"The nth Fibonacci number is= "<<fib[n-1];
 }

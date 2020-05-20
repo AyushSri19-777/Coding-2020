@@ -54,5 +54,5 @@ int minValue(Node* root )
         return -1 ;
     if(root->left==NULL)
         return root->data;
-    minValue(root->left);
+    minValue(root->left) ;
 }

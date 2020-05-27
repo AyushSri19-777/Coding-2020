@@ -44,7 +44,8 @@ Testcase 2: We construct the following BST by inserting given values one by one 
                 \
                 10
                     \
-                    11
+                    11  
+                    
 The minimum value in the given BST is 9.
 Link- https://practice.geeksforgeeks.org/problems/minimum-element-in-bst/1/
 */

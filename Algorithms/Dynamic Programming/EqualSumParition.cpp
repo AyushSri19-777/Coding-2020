@@ -47,7 +47,12 @@ int main()
         cin>>arr[i];
         sum+=arr[i];
     }
-    cout<<sum/2;
+    if(sum%2!=0)
+    {
+        cout<<"Equal sum partition is not possible"; 
+        return 0;
+    }
+    //cout<<sum/2;
     bool ans=checkEqualPartition(arr,sum/2,n);
     if(ans==1)
         cout<<"Equal sum partition is possible";

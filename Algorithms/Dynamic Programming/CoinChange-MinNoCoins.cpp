@@ -43,7 +43,7 @@ int minNoOfCoins(int arr[],int n,int sum)
 int main()
 {
     int n,sum;
-    cout<<"Enter the number of denominations available\n";
+    cout<<"Enter the number of denominations available \n";
     cin>>n;
     cout<<"Enter value of each denomination\n";
     int arr[n];

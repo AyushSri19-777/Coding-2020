@@ -38,7 +38,7 @@ int minNoOfCoins(int arr[],int n,int sum)
             }            
         }
     }
-    return t[n][sum];
+    return t[n][sum] ;
 }
 int main()
 {

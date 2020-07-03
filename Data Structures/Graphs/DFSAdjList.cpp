@@ -3,6 +3,22 @@
 #include <stack>
 #include <vector>
 using namespace std;
+bool allvisited(vector <int> p,int v[])
+{
+    int f=0;
+    for(int i=0;i<p.size();i++)
+    {
+        int j=p.at(i);
+        if(v[j]==0)
+        {
+            f=1;
+            break;
+        }
+    }
+    if(f==1)
+        return false;
+    return true;
+}
 int main()
 {
     int n,e;
@@ -41,12 +57,13 @@ int main()
         }
         if(f==1)
         {
-            s=j;
+                s=j;
         }
         else
         {
             s=stk.top();
-            stk.pop();
+            if(allvisited(graph[s],v)==true)
+                stk.pop();
         }        
     }
 }

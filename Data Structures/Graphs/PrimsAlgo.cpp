@@ -15,21 +15,6 @@ int minKey(int mstSet[],int key[],int n)
     }
     return idx;
 }
-bool allone(int mstSet[],int n)
-{
-    int f=0;
-    for(int i=0;i<n;i++)
-    {
-        if(mstSet[i]==0)
-        {
-            f=1;
-            break;
-        }
-    }
-    if(f==1)
-        return false;
-    return true;
-}
 int main()
 {
     int n,e;

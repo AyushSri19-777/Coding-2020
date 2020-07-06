@@ -40,7 +40,7 @@ int main()
     for(int count=0;count<n-1;count++)
     {
         int u=minKey(mstSet,key,n);
-        cout<<key[u]<<"heloooo";
+       // cout<<key[u]<<"heloooo";
         mstSet[u]=1;
         for(int v=0;v<n;v++)
         {

@@ -8,7 +8,7 @@ int minKey(int v[],int key[],int n)
         if(v[i]!=1&&key[i]<min)
         {
             min=key[i];
-            idx=i;
+            idx=i;   
         }
     }
     return idx;

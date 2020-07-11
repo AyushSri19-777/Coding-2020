@@ -2,6 +2,32 @@
 #include <cstring>
 #include <queue>
 using namespace std;
+bool allvisit(int v[],int n)
+{
+    bool f=true;
+    for(int i=0;i<n;i++)
+    {
+        if(v[i]==-1)
+        {
+            f=false;
+            break;
+        }
+    }
+    return f;
+}
+int getUnvisited(int v[],int n)
+{
+    int idx;
+    for(int i=0;i<n;i++)
+    {
+        if(v[i]==-1)
+        {
+            idx=i;
+            break;
+        }
+    }
+    return idx;
+}
 int main()
 {
     cout<<"Enter the no. of vertices and edges ";
@@ -21,11 +47,18 @@ int main()
     int s=0;
     q.push(s);
     v[s]=0;
-    while (q.empty()!=true)
+    while (q.empty()!=true||allvisit(v,n)==false)
     {
+        if(allvisit(v,n)==false&&q.empty()==true)
+        {
+            s=getUnvisited(v,n);
+            q.push(s);
+        }
+        else{
         s=q.front();
-        cout<<s;
         q.pop();
+        }
+        cout<<s<<"\t";        
         v[s]=1;
         for(int i=0;i<n;i++)
         {

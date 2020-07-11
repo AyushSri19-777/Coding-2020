@@ -36,7 +36,7 @@ int main()
             }
         }
     }
-    cout<<"The all pair shortest path\n";
+    cout<<"The All Pair Shortest Path\n";
     for(int i=0;i<n;i++)
         cout<<"\t"<<i;
     cout<<"\n";

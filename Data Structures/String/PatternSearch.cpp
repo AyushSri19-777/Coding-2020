@@ -11,7 +11,7 @@ int getHash(string s)
 
     for(int i=0;i<s.length();i++)
     {
-        sum+=U[s[i]]*pow(10,s.length()-i);
+        sum+=U[s[i]]*pow(10,s.length()-i-1);
     }
     return sum;
 }
@@ -24,7 +24,7 @@ int main()
     cout<<s.substr(0,3)<<"char\n";
     for(int j=0;j<s.length()-2;j++)
     {
-        w=s.substr(j,3);
+        w=s.substr(j,p.length());
         cout<<w<<"\t"<<getHash(w)<<"\n";
         if(pat==getHash(w))
             count++;

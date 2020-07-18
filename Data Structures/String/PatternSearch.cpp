@@ -24,7 +24,7 @@ int main()
     cout<<s.substr(0,3)<<"char\n";
     for(int j=0;j<s.length()-2;j++)
     {
-        w=s.substr(j,p.length());
+        w=s.substr(j,p.length()) ;
         //cout<<w<<"\t"<<getHash(w)<<"\n";
         if(pat==getHash(w))
             count++;

@@ -76,7 +76,7 @@ void printGivenLevel(Node *root,int l)
         printGivenLevel(root->right,l-1);
     }
 }
-void rightView(Node *root)
+void rightView(Node *root )
 {
    for(int i=1;i<=height(root);i++)
    {

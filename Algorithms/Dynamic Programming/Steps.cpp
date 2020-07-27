@@ -25,6 +25,6 @@ int main()
     cout<<"Enter "<<n<<" elements";
     for(int i=0;i<n;i++)
         cin>>arr[i];
-    cout<<"Total jumps= "<<solveTD(arr,0,n);
+    cout<<"Total jumps= "<<solve(arr,0,n);
     
 }

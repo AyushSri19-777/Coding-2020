@@ -1,34 +1,51 @@
 #include<bits/stdc++.h>
 using namespace std;
-bool checkLadder(int i,int j,unordered_map U)
+bool check(int i,int j,unordered_map<int,int> U)
 {
     if(U[i]<=j)
         return true;
     return false;
 }
-int minMoves(int start,int end,int i,int j,unordered_map U)
+int minMoves(int i,int j,unordered_map<int,int> U,int m)
 {
-    if(start==n)
+    int result=INT_MAX;
+    if(i>=j)
         return 0;
-    if(checkLadder(i,j,U)==true)
-        start+=U[i];
+    if(check(i,j,U)==true)
+    {
+        if(U[i]<i)
+          return minMoves(i-U[i],j,U,m);
+        else
+        {
+            return minMoves(i+U[i],j,U,m);
+        }        
+    }
+    for(int k=1;k<=m;k++)
+    {
+        int temp_ans=minMoves(i+k,j,U,m);
+        result=min(result,temp_ans);
+    }        
 }
 int main()
 {
-    int m,n,h;
+    int m,n,h,start,end,x,y;
     unordered_map<int,int> U;
     cout<<"Enter matrix size";
     cin>>n;
     cout<<"Enter the max value";
     cin>>m;
-    cout<<"Enter moves";
+    cout<<"Enter no. of moves";
     cin>>h;
-    for(int i=0;i<h;h++)
+    cout<<"Enter moves";
+    for(int i=0;i<h;i++)
     {
-        int x,y;
-        cin>>x>>y;
+        cout<<"Enter starting";
+        cin>>x;
+        cout<<"Enter end";
+        cin>>y;
         U[x]=y;
     }
-    cout<<minMoves()
-
+    cout<<"Enter start and end";
+    cin>>start>>end;
+    cout<<minMoves(start,end,U,m);
 }

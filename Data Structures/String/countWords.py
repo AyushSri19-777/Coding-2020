@@ -1,14 +1,18 @@
-def count():
-    f1=open('demo.txt','r')
-    a=f1.readline()
+def count(a):
+    #f1=open('demo.txt','r')
+    #a=f1.readline()
     s=a.split(' ')
+    st=""
     mydict={}
     for i in s:
         if i in mydict:
             mydict[i]=mydict[i]+1
+            if mydict[i]>1:
+                st=st+i+str(mydict[i])+" "
         else:
             mydict[i]=1 
+            st=st+i+" "
 
-    print(mydict)
-count()
-#count("hello my name is hello ayush")
+    print(st)
+#count()
+count("john cena john jake")

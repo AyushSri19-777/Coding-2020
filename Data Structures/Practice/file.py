@@ -4,4 +4,4 @@ for line in f:
     print(line)
 f.close()
 file=open("H:/C++ Programming/Data Structures/Practice/a.txt","a")
-file.write("Hello motto")
+file.write("Hello motto ")
